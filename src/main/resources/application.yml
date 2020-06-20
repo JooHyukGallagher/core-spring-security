@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/core_spring_security?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: connectuser
+    password: connect123!@#
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+#    database-platform: org.hibernate.dialect.mysql5innodbdialect
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        jdbc.lob.non_contextual_creation: true
+
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+
+  main:
+   allow-bean-definition-overriding: true
+
+# profiles:
+#   active: pointcut
