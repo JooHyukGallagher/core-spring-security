@@ -30,3 +30,11 @@ out/
 
 ### VS Code ###
 .vscode/
+
+**/logs/
+*.log
+*.zip
+*.yaml
+*.yaml
+**/target/
+**/.idea/
