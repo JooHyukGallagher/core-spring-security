@@ -2,6 +2,7 @@ package me.weekbelt.corespringsecurity.security.config;
 
 import lombok.RequiredArgsConstructor;
 import me.weekbelt.corespringsecurity.security.filter.AjaxLoginProcessingFilter;
+import me.weekbelt.corespringsecurity.security.handler.CustomAccessDeniedHandler;
 import me.weekbelt.corespringsecurity.security.provider.CustomAuthenticationProvider;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
@@ -66,6 +68,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(customAuthenticationSuccessHandler)
                 .defaultSuccessUrl("/");
 
+
+        http
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler());
+
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        CustomAccessDeniedHandler accessDeniedHandler = new CustomAccessDeniedHandler();
+        accessDeniedHandler.setErrorPage("/denied");
+        return accessDeniedHandler;
     }
 
     @Override
